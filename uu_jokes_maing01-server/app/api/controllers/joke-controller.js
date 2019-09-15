@@ -1,15 +1,9 @@
 "use strict";
+const JokeAbl = require("../../abl/joke-abl.js");
+
 class JokeController {
   create(ucEnv) {
-    let dtoIn = ucEnv.getDtoIn();
-    let awid = ucEnv.getUri().getAwid();
-    let dtoOut = {
-      awid,
-      joke: dtoIn.joke,
-      uuAppErrorMap: {}
-    };
-
-    return dtoOut;
+    return JokeAbl.create(ucEnv.uri.getAwid(), ucEnv.getDtoIn());
   }
 }
 
