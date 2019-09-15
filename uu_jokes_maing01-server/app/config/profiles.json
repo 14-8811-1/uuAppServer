@@ -12,7 +12,8 @@
     "useCaseMap": {
       "init": ["AwidOwner"],
       "defaultUve": ["Public"],
-      "helloWorld": ["Public"]
+      "helloWorld": ["Public"],
+      "joke/create": ["Public"]
     }
   }
 }
