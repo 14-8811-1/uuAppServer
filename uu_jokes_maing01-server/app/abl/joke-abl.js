@@ -2,6 +2,7 @@
 const { Validator } = require("uu_appg01_server").Validation;
 const { ValidationHelper } = require("uu_appg01_server").AppServer;
 const Errors = require("../api/errors/joke-error.js");
+const { DaoFactory, ObjectStoreError } = require("uu_appg01_server").ObjectStore;
 
 const WARNINGS = {
   createUnsupportedKeys: {
@@ -12,6 +13,7 @@ const WARNINGS = {
 class JokeAbl {
   constructor() {
     this.validator = Validator.load();
+    this.dao = DaoFactory.getDao("joke");
   }
 
   async create(awid, dtoIn) {
@@ -24,8 +26,18 @@ class JokeAbl {
       Errors.Create.InvalidDtoIn
     );
 
-    let dtoOut = { ...dtoIn };
-    dtoOut.awid = awid;
+    dtoIn.awid = awid;
+    let dtoOut;
+    try {
+      dtoOut = await this.dao.create(dtoIn);
+    } catch (e) {
+      if (e instanceof ObjectStoreError) {
+        // A3
+        throw new Errors.Create.JokeDaoCreateFailed({ uuAppErrorMap }, e);
+      }
+      throw e;
+    }
+
     dtoOut.uuAppErrorMap = uuAppErrorMap;
     return dtoOut;
   }

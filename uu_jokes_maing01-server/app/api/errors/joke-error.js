@@ -9,6 +9,13 @@ const Create = {
       this.code = `${Create.UC_CODE}invalidDtoIn`;
       this.message = "DtoIn is not valid.";
     }
+  },
+  JokeDaoCreateFailed: class extends UuJokesError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Create.UC_CODE}jokeDaoCreateFailed`;
+      this.message = "Create joke by joke Dao create failed.";
+    }
   }
 };
 
