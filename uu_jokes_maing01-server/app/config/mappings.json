@@ -20,6 +20,11 @@
         "realization": "api/controllers/JokeController.create",
         "httpMethod": ["POST"],
         "type": "CMD"
+      },
+      "joke/get": {
+        "realization": "api/controllers/JokeController.get",
+        "httpMethod": ["GET"],
+        "type": "CMD"
       }
     }
   }

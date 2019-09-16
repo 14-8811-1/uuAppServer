@@ -10,10 +10,11 @@
   "*": {
     "profileList": ["Authorities", "Executives", "AwidOwner"],
     "useCaseMap": {
-      "init": ["AwidOwner"],
+      "init": ["Public"],
       "defaultUve": ["Public"],
       "helloWorld": ["Public"],
-      "joke/create": ["Public"]
+      "joke/create": ["Public"],
+      "joke/get": ["Public"]
     }
   }
 }

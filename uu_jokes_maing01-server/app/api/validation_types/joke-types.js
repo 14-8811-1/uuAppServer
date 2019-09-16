@@ -2,5 +2,10 @@
 
 const jokeCreateDtoInType = shape({
   name: uu5String(255).isRequired(),
-  text: uu5String(4000)
+  code: code().isRequired(),
+  text: uu5String(4000),
+});
+
+const jokeGetDtoInType = shape({
+  code: code().isRequired()
 });

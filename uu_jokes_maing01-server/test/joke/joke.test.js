@@ -3,22 +3,56 @@ const { TestHelper } = require("uu_appg01_workspace-test");
 beforeAll(async () => {
   // fire up application
   await TestHelper.setup();
+  await TestHelper.initApp();
+  await TestHelper.initAppWorkspace();
+  await TestHelper.executePostCommand("init", { authoritiesUri: "urn:uu:GGPLUS4U" });
 });
 
-afterAll(() => {
-  TestHelper.teardown();
+afterAll(async () => {
+  await TestHelper.teardown();
 });
 
 describe("Joke uuCMD tests", () => {
-  test("example 3 test - joke/create", async () => {
+  test("example 8 test - joke/create", async () => {
+    expect.assertions(5);
+
     let dtoIn = {
       name: "Very Funny Joke",
-      text: "Something very funny"
+      text: "Something very funny",
+      code: "ABC"
     };
-    let result = await TestHelper.executePostCommand("joke/create", dtoIn, undefined, undefined, TestHelper.getAsid());
+    let result = await TestHelper.executePostCommand("joke/create", dtoIn);
 
+    expect(result.data.name).toEqual(dtoIn.name);
+    expect(result.data.code).toEqual(dtoIn.code);
+    expect(result.data.text).toEqual(dtoIn.text);
+    expect(result.data.uuAppErrorMap).toEqual({});
+
+    try {
+      await TestHelper.executePostCommand("joke/create", dtoIn);
+    } catch (e) {
+      expect(e.code).toEqual("uu-jokes-main/joke/create/jokeNotUnique");
+    }
+  });
+
+  test("example 8 test - joke/get", async () => {
+    expect.assertions(4);
+
+    let dtoIn = {
+      name: "Very Funny Joke",
+      text: "Something very funny",
+      code: "BCA"
+    };
+    await TestHelper.executePostCommand("joke/create", dtoIn);
+    let result = await TestHelper.executeGetCommand("joke/get", { code: dtoIn.code });
     expect(result.data.name).toEqual(dtoIn.name);
     expect(result.data.text).toEqual(dtoIn.text);
     expect(result.data.uuAppErrorMap).toEqual({});
+
+    try {
+      await TestHelper.executeGetCommand("joke/get", { code: "AAA" });
+    } catch (e) {
+      expect(e.code).toEqual("uu-jokes-main/joke/get/jokeDoesNotExist");
+    }
   });
 });
