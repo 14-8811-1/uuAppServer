@@ -27,6 +27,13 @@ const Create = {
 };
 
 const Get = {
+  InvalidDtoIn: class extends UuJokesError {
+    constructor() {
+      super(...arguments);
+      this.code = `${Get.UC_CODE}invalidDtoIn`;
+      this.message = "DtoIn is not valid.";
+    }
+  },
   UC_CODE: `${UuJokesError.ERROR_PREFIX}joke/get/`,
   JokeDoesNotExist: class extends UuJokesError {
     constructor() {
