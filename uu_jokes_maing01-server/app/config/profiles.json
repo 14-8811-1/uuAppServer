@@ -13,8 +13,9 @@
       "init": ["Public"],
       "defaultUve": ["Public"],
       "helloWorld": ["Public"],
-      "joke/create": ["Public"],
-      "joke/get": ["Public"]
+      "joke/create": ["Public", "Authorities"],
+      "joke/get": ["Public"],
+      "joke/setActive": ["Authorities"]
     }
   }
 }

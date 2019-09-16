@@ -44,7 +44,26 @@ const Get = {
   }
 };
 
+const SetActive = {
+  UC_CODE: `${UuJokesError.ERROR_PREFIX}joke/get/`,
+  InvalidDtoIn: class extends UuJokesError {
+    constructor() {
+      super(...arguments);
+      this.code = `${SetActive.UC_CODE}invalidDtoIn`;
+      this.message = "DtoIn is not valid.";
+    }
+  },
+  SetStateFailed: class extends UuJokesError {
+    constructor() {
+      super(...arguments);
+      this.code = `${SetActive.UC_CODE}setStateFailed`;
+      this.message = "Set state failed.";
+    }
+  }
+};
+
 module.exports = {
   Create,
-  Get
+  Get,
+  SetActive
 };

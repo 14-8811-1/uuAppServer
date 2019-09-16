@@ -55,4 +55,34 @@ describe("Joke uuCMD tests", () => {
       expect(e.code).toEqual("uu-jokes-main/joke/get/jokeDoesNotExist");
     }
   });
+
+  test("example 12 test - joke/create + setActive", async () => {
+    expect.assertions(10);
+
+    let dtoIn = {
+      name: "Very Funny Joke",
+      text: "Something very funny",
+      code: "BCAAA"
+    };
+    let result = await TestHelper.executePostCommand("joke/create", dtoIn);
+    expect(result.data.name).toEqual(dtoIn.name);
+    expect(result.data.text).toEqual(dtoIn.text);
+    expect(result.data.uuAppErrorMap).toEqual({});
+
+    expect(result.data.state).toEqual("pending");
+    expect(result.data.author).toEqual("User Anonymous");
+    expect(result.data.uuIdentity).toEqual("0-0");
+
+    let session = await TestHelper.login("AwidOwner");
+
+    dtoIn.code = "BQA";
+    result = await TestHelper.executePostCommand("joke/create", dtoIn);
+
+    expect(result.data.state).toEqual("active");
+    expect(result.data.author).toEqual("Holly Hudson");
+    expect(result.data.uuIdentity).toEqual("14-2710-1");
+
+    result = await TestHelper.executePostCommand("joke/setActive", { code: "BCAAA" });
+    expect(result.data.state).toEqual("active");
+  });
 });

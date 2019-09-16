@@ -13,6 +13,10 @@ class JokeMongo extends UuObjectDao {
   async get(awid, code) {
     return await super.findOne({ awid, code });
   }
+
+  async setActive(awid, code) {
+    return await super.findOneAndUpdate({ awid, code }, { state: "active" }, "NONE");
+  }
 }
 
 module.exports = JokeMongo;

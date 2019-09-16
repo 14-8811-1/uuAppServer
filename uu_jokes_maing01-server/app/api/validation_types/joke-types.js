@@ -9,3 +9,7 @@ const jokeCreateDtoInType = shape({
 const jokeGetDtoInType = shape({
   code: code().isRequired()
 });
+
+const jokeSetActiveDtoInType = shape({
+  code: code().isRequired()
+})
