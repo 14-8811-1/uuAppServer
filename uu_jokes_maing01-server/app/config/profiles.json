@@ -18,7 +18,9 @@
       "joke/setActive": ["Authorities"],
       
       "uu-app-binarystore/createBinary": ["Public"],
-      "uu-app-binarystore/getBinary": ["Public"]
+      "uu-app-binarystore/getBinary": ["Public"],
+      "image/create": ["Public"],
+      "image/get": ["Public"]
     }
   }
 }

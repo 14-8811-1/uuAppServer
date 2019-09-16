@@ -30,6 +30,16 @@
         "realization": "api/controllers/JokeController.setActive",
         "httpMethod": ["POST"],
         "type": "CMD"
+      },
+      "image/create": {
+        "realization": "api/controllers/ImageController.create",
+        "httpMethod": ["POST"],
+        "type": "CMD"
+      },
+      "image/get": {
+        "realization": "api/controllers/ImageController.get",
+        "httpMethod": ["POST"],
+        "type": "CMD"
       }
     }
   }
