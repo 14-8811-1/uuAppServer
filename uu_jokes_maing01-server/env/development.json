@@ -1,7 +1,8 @@
 {
   "port": 8080,
   "uuSubAppDataStoreMap": {
-    "primary": "mongodb://127.0.0.1:27017/jokesMainPrimary-skoleni"
+    "primary": "mongodb://127.0.0.1:27017/jokesMainPrimary-skoleni",
+    "binary": "mongodb://127.0.0.1:27017/jokesMainBinary-skoleni"
   },
   "privilegedUserMap": {
     "asidOwner": "14-8811-1"

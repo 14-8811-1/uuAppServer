@@ -1,6 +1,6 @@
 {
   "name": "uu_jokes_maing01-server",
-  "version": "0.1.0",
+  "version": "0.1.0-dev",
   "description": "",
   "license": "License Commercial",
   "spec": "nodejs-app; uu_appg01@1.4.1",
@@ -8,6 +8,7 @@
     "uu_appg01_server": "^4.3.0"
   },
   "devDependencies": {
+    "uu_appg01_binarystore-cmd": "^2.1.0",
     "uu_appg01_devkit": "^1.4.1",
     "uu_appg01_workspace-test": "^2.2.0"
   },

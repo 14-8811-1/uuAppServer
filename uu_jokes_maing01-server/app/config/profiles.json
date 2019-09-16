@@ -15,7 +15,10 @@
       "helloWorld": ["Public"],
       "joke/create": ["Public", "Authorities"],
       "joke/get": ["Public"],
-      "joke/setActive": ["Authorities"]
+      "joke/setActive": ["Authorities"],
+      
+      "uu-app-binarystore/createBinary": ["Public"],
+      "uu-app-binarystore/getBinary": ["Public"]
     }
   }
 }
